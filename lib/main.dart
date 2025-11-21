@@ -1,10 +1,20 @@
 import 'package:anime_verse/provider/app_state_provider.dart';
+import 'package:anime_verse/provider/auth_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 import 'config/routes.dart';
 
-void main() {
+void main() async {
+  // Pastikan engine Flutter siap sebelum memanggil kode native(Firebase)
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Inisialisasi Firebase
+  await Firebase.initializeApp();
+
+  await GoogleSignIn.instance.initialize();
+
   runApp(const MyApp());
 }
 
@@ -13,13 +23,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AppStateProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AppStateProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
       child: MaterialApp.router(
         title: 'AnimeVerse',
-        theme: ThemeData(
-          fontFamily: 'Urbanist',
-        ),
+        theme: ThemeData(fontFamily: 'Urbanist'),
         routerConfig: createRouter(),
         debugShowCheckedModeBanner: false,
       ),
