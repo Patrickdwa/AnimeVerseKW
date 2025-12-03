@@ -37,4 +37,4 @@ Berikut adalah Screenshot dari semua layar yang ada di aplikasi Anime Verse.
 
 Tonton video demo aplikasi di bawah ini untuk melihat semua fitur utama dalam aksi.
 
-**[Tonton Demo di YouTube](https://link.ke.video.demo.anda)**
+**[Tonton Demo di YouTube](https://youtube.com/shorts/TpG0AguV--w?feature=share)**
